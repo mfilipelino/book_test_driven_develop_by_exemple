@@ -1,5 +1,5 @@
 from unittest import TestCase
-from money import dollar, franc, MoneyTypeError, Bank
+from money import dollar, franc, Exchange
 
 
 class TestMoney(TestCase):
@@ -20,20 +20,12 @@ class TestMoney(TestCase):
 
     def test_plus_money(self):
         self.assertEqual(dollar(1) + dollar(2), dollar(3))
-        self.assertEqual(dollar(2).plus(dollar(1)), dollar(3))
-        self.assertEqual(franc(2).plus(franc(2)), franc(4))
+        self.assertEqual(franc(2) + franc(2), franc(4))
 
 
 class TestBank(TestCase):
+
     def test_plus_money(self):
-        money = Bank.sum(dollar(3), dollar(4), currency='USD')
-        self.assertEqual(money, dollar(7))
-        self.assertEqual(money.currency, 'USD')
-
-        money = Bank.sum(franc(3), franc(4), currency='CHF')
-        self.assertEqual(money, franc(7))
-        self.assertEqual(money.currency, 'CHF')
-
-        money = Bank.sum(dollar(3), franc(4), currency='USD')
-        self.assertEqual(money, dollar(5))
-        self.assertEqual(money.currency, 'USD')
+        self.assertEqual(Exchange.convert(franc(2), 'USD'), dollar(1))
+        self.assertEqual(Exchange.convert(dollar(2), 'CHF'), franc(4))
+        self.assertEqual(Exchange.convert(franc(2), 'USD') + dollar(2), dollar(3))

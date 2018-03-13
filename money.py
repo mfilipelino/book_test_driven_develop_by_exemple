@@ -1,3 +1,4 @@
+
 def dollar(value):
     return create_currency(value=value, currency='USD')
 
@@ -43,9 +44,15 @@ class Money(object):
         else:
             raise MoneyTypeError('different currencies')
 
-    def plus(self, other):
-        if self.currency == other.currency:
-            return create_currency(value=self.amount + other.amount, currency=self.currency)
-        else:
-            raise MoneyTypeError('different currencies')
 
+class Exchange(object):
+
+    table = {
+        'CHF': {'USD': 0.5},
+        'USD': {'CHF': 2}
+    }
+
+    @staticmethod
+    def convert(money, currency):
+        value = money.amount * Exchange.table[money.currency][currency]
+        return create_currency(value, currency=currency)
