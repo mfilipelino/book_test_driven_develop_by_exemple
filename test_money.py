@@ -1,32 +1,39 @@
 from unittest import TestCase
-from money import dollar, franc
+from money import dollar, franc, MoneyTypeError, Bank
 
 
 class TestMoney(TestCase):
     def test_multiplication(self):
-        dollar_five = dollar(5)
-        self.assertEqual(dollar_five.times(2).amount, 10)
-        dollar_c = dollar_five.times(3)
-        self.assertEqual(15, dollar_c.amount)
+        self.assertEqual(dollar(5).times(2).amount, 10)
+        self.assertEqual(15, dollar(5).times(3).amount)
 
     def test_equality(self):
-        m1 = dollar(5)
-        m2 = franc(5)
-        m4 = dollar(5)
-        m5 = franc(6)
-        self.assertEqual(m1, m4)
-        self.assertEqual(m2.times(6), m5.times(5))
-        self.assertNotEqual(m2, m1)
+        self.assertEqual(dollar(5), dollar(5))
+        self.assertEqual(dollar(5).times(6), dollar(6).times(5))
+        self.assertNotEqual(dollar(1), dollar(0))
 
     def test_currency(self):
-        m1 = dollar(3)
-        m2 = franc(4)
-        self.assertEqual('USD', m1.currency)
-        self.assertEqual('CHF', m2.currency)
+        self.assertEqual('USD', dollar(1).currency)
+        self.assertEqual('CHF', franc(1).currency)
+        self.assertEqual(dollar(1).currency, dollar(2).currency)
+        self.assertNotEqual(dollar(3).currency, franc(3).currency)
 
     def test_plus_money(self):
-        m1 = dollar(1)
-        m2 = dollar(2)
-        m3 = m1 + m2
-        self.assertEqual(m3, dollar(3))
-        self.assertEqual(m2.plus(dollar(1)), dollar(3))
+        self.assertEqual(dollar(1) + dollar(2), dollar(3))
+        self.assertEqual(dollar(2).plus(dollar(1)), dollar(3))
+        self.assertEqual(franc(2).plus(franc(2)), franc(4))
+
+
+class TestBank(TestCase):
+    def test_plus_money(self):
+        money = Bank.sum(dollar(3), dollar(4), currency='USD')
+        self.assertEqual(money, dollar(7))
+        self.assertEqual(money.currency, 'USD')
+
+        money = Bank.sum(franc(3), franc(4), currency='CHF')
+        self.assertEqual(money, franc(7))
+        self.assertEqual(money.currency, 'CHF')
+
+        money = Bank.sum(dollar(3), franc(4), currency='USD')
+        self.assertEqual(money, dollar(5))
+        self.assertEqual(money.currency, 'USD')

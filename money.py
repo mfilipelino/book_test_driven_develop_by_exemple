@@ -10,6 +10,10 @@ def create_currency(value, currency):
     return Money(value=value, currency=currency)
 
 
+class MoneyTypeError(TypeError):
+    pass
+
+
 class Money(object):
     def __init__(self, value, currency):
         self._value = value
@@ -37,10 +41,11 @@ class Money(object):
             value = self.amount + other.amount
             return create_currency(value=value, currency=self.currency)
         else:
-            raise Exception('different currencies')
+            raise MoneyTypeError('different currencies')
 
     def plus(self, other):
         if self.currency == other.currency:
             return create_currency(value=self.amount + other.amount, currency=self.currency)
         else:
-            raise Exception('different currencies')
+            raise MoneyTypeError('different currencies')
+
