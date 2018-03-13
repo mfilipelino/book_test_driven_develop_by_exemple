@@ -1,10 +1,13 @@
 
+CHF = 'CHF'
+USD = 'USD'
+
 def dollar(value):
-    return create_currency(value=value, currency='USD')
+    return create_currency(value=value, currency=USD)
 
 
 def franc(value):
-    return create_currency(value, currency='CHF')
+    return create_currency(value, currency=CHF)
 
 
 def create_currency(value, currency):
@@ -47,12 +50,17 @@ class Money(object):
 
 class Exchange(object):
 
-    table = {
-        'CHF': {'USD': 0.5},
-        'USD': {'CHF': 2}
+    _table = {
+        USD: {},
+        CHF: {}
     }
 
     @staticmethod
     def convert(money, currency):
-        value = money.amount * Exchange.table[money.currency][currency]
+        value = money.amount * Exchange._table[currency][money.currency]
         return create_currency(value, currency=currency)
+
+    @staticmethod
+    def add_rate(coin1, value, coin2):
+        Exchange._table[coin1][coin2] = float(1/value)
+        Exchange._table[coin2][coin1] = float(value)

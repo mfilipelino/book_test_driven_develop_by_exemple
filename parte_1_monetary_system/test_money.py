@@ -1,5 +1,6 @@
 from unittest import TestCase
-from money import dollar, franc, Exchange
+
+from parte_1_monetary_system.money import dollar, franc, Exchange, CHF, USD
 
 
 class TestMoney(TestCase):
@@ -13,8 +14,8 @@ class TestMoney(TestCase):
         self.assertNotEqual(dollar(1), dollar(0))
 
     def test_currency(self):
-        self.assertEqual('USD', dollar(1).currency)
-        self.assertEqual('CHF', franc(1).currency)
+        self.assertEqual(USD, dollar(1).currency)
+        self.assertEqual(CHF, franc(1).currency)
         self.assertEqual(dollar(1).currency, dollar(2).currency)
         self.assertNotEqual(dollar(3).currency, franc(3).currency)
 
@@ -23,9 +24,16 @@ class TestMoney(TestCase):
         self.assertEqual(franc(2) + franc(2), franc(4))
 
 
-class TestBank(TestCase):
+class TestExchange(TestCase):
 
     def test_plus_money(self):
-        self.assertEqual(Exchange.convert(franc(2), 'USD'), dollar(1))
-        self.assertEqual(Exchange.convert(dollar(2), 'CHF'), franc(4))
-        self.assertEqual(Exchange.convert(franc(2), 'USD') + dollar(2), dollar(3))
+        # taxa USD:CHF 2:1
+        Exchange.add_rate(USD, 2, CHF)
+        self.assertEqual(Exchange.convert(franc(2), USD), dollar(1))
+        self.assertEqual(Exchange.convert(dollar(2), CHF), franc(4))
+        self.assertEqual(Exchange.convert(franc(2), USD) + dollar(2), dollar(3))
+
+        #taxa USD:CHF 3:1
+        Exchange.add_rate(USD, 3, CHF)
+        self.assertEqual(Exchange.convert(franc(3), USD), dollar(1))
+
