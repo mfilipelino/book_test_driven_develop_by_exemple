@@ -1,5 +1,5 @@
 from unittest import TestCase
-from examples.insertion_sort import insertion_sort
+from katas.insertion_sort import insertion_sort
 
 
 class TestInsertionSort(TestCase):
