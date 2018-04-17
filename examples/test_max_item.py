@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-from exemples.max_items import max_item
+from examples.max_items import max_item
 
 
 class TestMaxItem(TestCase):
