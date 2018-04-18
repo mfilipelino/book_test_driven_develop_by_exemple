@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-from katas.consumption import consumption, output
+from urionlinejudge.consumption import consumption, output
 
 
 class TestConsumption(TestCase):

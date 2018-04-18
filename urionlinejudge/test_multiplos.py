@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-from katas.multiples import multiples
+from urionlinejudge.multiples import multiples
 
 
 class TestMultiplos(TestCase):

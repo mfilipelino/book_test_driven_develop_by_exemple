@@ -1,3 +1,5 @@
+# https://www.urionlinejudge.com.br/judge/pt/problems/view/1014
+
 def output(value):
     return '%.3f km/l' % value
 

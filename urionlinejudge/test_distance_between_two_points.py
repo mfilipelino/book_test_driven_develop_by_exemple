@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-from katas.distance_between_two_points import f1, square_root, distance, output
+from urionlinejudge.distance_between_two_points import f1, square_root, distance, output
 
 
 class TestConsumption(TestCase):

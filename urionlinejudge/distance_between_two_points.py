@@ -1,3 +1,5 @@
+# https://www.urionlinejudge.com.br/judge/pt/problems/view/1017
+
 def f1(x1, x2):
     return (x1 - x2) * (x1 - x2)
 
