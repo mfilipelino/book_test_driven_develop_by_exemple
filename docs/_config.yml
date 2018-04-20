@@ -1,1 +1,4 @@
-theme: jekyll-theme-cayman
+show_title: false
+
+gems:
+  - jemoji
