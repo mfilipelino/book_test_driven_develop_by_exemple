@@ -1,9 +1,10 @@
 from unittest import TestCase
 
 from urionlinejudge.notes_and_coins import (
-    notes_and_coins,
+    change_coin,
     number_of_coins,
-    remaining_value
+    remaining_value,
+    change_coins
 )
 
 out_one = """NOTAS:
@@ -34,6 +35,19 @@ class TestNotesAndCoins(TestCase):
         self.assertEqual(remaining_value(100.00, 100.00), 0)
         self.assertEqual(remaining_value(100.00, 90.00), 10)
         self.assertEqual(remaining_value(1.00, 0.30), 0.10)
+
+    def test_change(self):
+        self.assertEqual(change_coin(150, 100), (1, 50))
+        self.assertEqual(change_coin(150, 50), (3, 0))
+        self.assertEqual(change_coin(40, 50), (0, 40))
+        self.assertEqual(change_coin(10, 10), (1, 0))
+
+    def test_return_change_of_money(self):
+        self.assertEqual(change_coins(money=110, coins=[100, 10]), [1, 1])
+        self.assertEqual(change_coins(money=10, coins=[10, 1]), [1, 0])
+        self.assertEqual(change_coins(money=17, coins=[10, 5, 1]), [1, 1, 2])
+        result = change_coins(money=576.73, coins=[100, 50, 20, 10, 5, 2])
+        self.assertEqual(result, [5, 1, 1, 0, 1, 0])
 
     def test_one(self):
         self.assertEqual(notes_and_coins(576.73), out_one)

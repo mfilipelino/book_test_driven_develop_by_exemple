@@ -6,9 +6,19 @@ def number_of_coins(value, coin):
     return value // coin
 
 
-def notes(money, notes_values):
-    pass
+def change_coin(money, coin):
+    number_coins = 0
+    if money >= coin:
+        number_coins = number_of_coins(money, coin)
+    remaining = remaining_value(money, coin)
+    return number_coins, remaining
 
-def notes_and_coins(money):
-    notes =[2.0, 5.0, 10.0, 20.0, 50.0, 100.0]
-    while notes != []:
+
+def change_coins(money, coins):
+    result = []
+    coins = list(reversed(coins))
+    while len(coins) > 0:
+        coin = coins.pop()
+        number_coin, money = change_coin(money, coin)
+        result.append(int(number_coin))
+    return result
