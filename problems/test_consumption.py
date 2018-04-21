@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-from urionlinejudge.consumption import consumption, output
+from problems.consumption import consumption, output
 
 
 class TestConsumption(TestCase):

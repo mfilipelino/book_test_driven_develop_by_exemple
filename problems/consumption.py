@@ -1,4 +1,8 @@
-# https://www.urionlinejudge.com.br/judge/pt/problems/view/1014
+"""
+source: https://www.urionlinejudge.com.br/judge/pt/problems/view/1014
+level: beginner
+type: sequencial
+"""
 
 def output(value):
     return '%.3f km/l' % value

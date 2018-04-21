@@ -1,4 +1,8 @@
-# https://www.urionlinejudge.com.br/repository/UOJ_1044.html
+"""
+source: https://www.urionlinejudge.com.br/repository/UOJ_1044.html
+level: beginner
+type: sequencial
+"""
 
 
 def multiples(a, b):

@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-from urionlinejudge.distance_between_two_points import f1, square_root, distance, output
+from problems.distance_between_two_points import f1, square_root, distance, output
 
 
 class TestConsumption(TestCase):
