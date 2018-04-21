@@ -1,5 +1,8 @@
-import sys
-
+"""
+source: https://www.urionlinejudge.com.br/judge/pt/runs/add/1091
+level: beginner
+level:
+"""
 
 def validate_input(number_testes):
     return number_testes > 0 and number_testes <= 1000
@@ -10,9 +13,9 @@ def residence_is_located(east_weast, north_south, x, y):
         return 'divisa'
     elif x < east_weast:
         if y > north_south:
-            return 'N0'
+            return 'NO'
         else:
-            return 'S0'
+            return 'SO'
     else:
         if y > north_south:
             return 'NE'
@@ -20,14 +23,13 @@ def residence_is_located(east_weast, north_south, x, y):
             return 'SE'
 
 
-def main(stdin=sys.stdin):
-
+def main():
     while True:
-        number_tests = int(stdin.readline())
+        number_tests = int(input())
         if validate_input(number_tests):
-            east_weast, north_south = map(int, stdin.readline().split())
+            east_weast, north_south = map(int, input().split())
             for i in range(number_tests):
-                x, y = map(int, stdin.readline().split())
+                x, y = map(int, input().split())
                 print(residence_is_located(east_weast, north_south, x, y))
         else:
             break
