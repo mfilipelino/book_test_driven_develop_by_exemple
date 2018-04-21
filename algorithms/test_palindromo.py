@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-from katas.palindromo import palindromo
+from algorithms.palindromo import palindromo
 
 
 class TestPalindromo(TestCase):

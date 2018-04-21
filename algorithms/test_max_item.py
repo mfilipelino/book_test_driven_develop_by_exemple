@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-from katas.max_items import max_item
+from algorithms.max_items import max_item
 
 
 class TestMaxItem(TestCase):
