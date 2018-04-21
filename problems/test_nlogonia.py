@@ -4,7 +4,6 @@ from problems.nlogonia import validate_input, residence_is_located, main
 
 
 class NlogoniaImpTestCase(TestCase):
-
     def test_number_testes_invalid(self):
         self.assertFalse(validate_input(0))
         self.assertFalse(validate_input(1001))
@@ -32,14 +31,26 @@ class NlogoniaImpTestCase(TestCase):
         self.assertEqual(residence_is_located(east_weast=0, north_south=0, x=1, y=-1), 'SE')
 
 
+def add_input(s):
+    return s + '\n'
+
+
 class NlogoniaBehaveTest(TestCase):
 
     def test_case_1(self):
-        input_1 = """3
-2 1
-10 10
--10 1
-0 33
-0"""
+        input_case_1 = add_input('3') + add_input('2 1') + add_input('10 10') + add_input('-10 -1') + add_input(
+            '0 33') + add_input('0')
+        print('######## CASE 1 ######')
+        print('### INPUT ###')
+        print(input_case_1)
+        print('### OUTPUT ###')
+        main(io.StringIO(input_case_1))
 
-        main(io.StringIO(input_1))
+    def test_case_2(self):
+        input_case_2 = add_input('4') + add_input('-1000 -1000') + add_input('-1000 -1000') + add_input(
+            '0 0') + add_input('-2000 -10000') + add_input('-999 -1001') + add_input('0')
+        print('######## CASE 2 ######')
+        print('### INPUT ###')
+        print(input_case_2)
+        print('### OUTPUT ###')
+        main(io.StringIO(input_case_2))
