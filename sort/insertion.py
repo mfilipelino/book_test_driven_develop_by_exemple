@@ -1,20 +1,25 @@
-def insertion_sort(lst):
+from unittest import TestCase
+from sort.insertion import insertion_sort
 
-    def sort(lst, size):
-        if size == 0:
-            return []
-        elif size == 1:
-            return lst
-        elif size == 2:
-            a, b = lst
-            return [b, a] if a > b else [a, b]
-        else:
-            ult = size - 1
-            for i in range(0, ult):
-                if lst[i] > lst[i+1]:
-                    lst[i+1], lst[i] = lst[i], lst[i+1]
-            tail = sort(lst[:-1], size=size-1)
-            head = [lst[ult]]
-            return tail + head
 
-    return sort(lst, size=len(lst))
+class TestInsertionSort(TestCase):
+
+    def test_list_empty(self):
+        self.assertEqual(insertion_sort([]), [])
+
+    def test_list_one_item(self):
+        self.assertEqual(insertion_sort([1]), [1])
+        self.assertEqual(insertion_sort(['a']), ['a'])
+
+    def test_list_two_items(self):
+        self.assertEqual(insertion_sort([1, 2]), [1, 2])
+        self.assertEqual(insertion_sort([2, 1]), [1, 2])
+
+    def test_list_multi_items(self):
+        self.assertEqual(insertion_sort([1, 2, 3]), [1, 2, 3])
+        self.assertEqual(insertion_sort([1, 3, 2]), [1, 2, 3])
+        self.assertEqual(insertion_sort([3, 2, 1]), [1, 2, 3])
+
+    def test_list_multi_items(self):
+        self.assertEqual(insertion_sort([5, 3, 1, 2, 4]), [1, 2, 3, 4, 5])
+        self.assertEqual(insertion_sort(['e', 'c', 'a', 'b', 'd']), list('abcde'))
