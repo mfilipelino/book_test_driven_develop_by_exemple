@@ -23,3 +23,7 @@ class TestCaseBubbleSort(TestCase):
         self.assertEqual([1, 2, 3], bubble_sort([2, 3, 1]))
         self.assertEqual([1, 2, 3], bubble_sort([3, 2, 1]))
         self.assertEqual([1, 2, 3], bubble_sort([3, 1, 2]))
+
+    def test_case_3(self):
+        self.assertEqual(sorted(list("dhausdhuashdfjasjdfkjaskldf")),
+                         bubble_sort(list("dhausdhuashdfjasjdfkjaskldf")))
