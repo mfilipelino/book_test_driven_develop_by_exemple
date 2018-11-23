@@ -1,3 +1,0 @@
-
-def mergesort(lst):
-    pass
