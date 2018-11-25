@@ -7,5 +7,4 @@ def linear_search(target, list_):
         for i in range(size):
             if target == list_[i]:
                 return i
-        else:
-            return None
+        return None
